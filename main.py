@@ -75,7 +75,7 @@ dir_entre = [
     {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},  
     {"TEXT": ".", "OP":"?"}, 
     {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},   
-    {"LOWER": "e/"},
+    {"LOWER": {"IN": ["e/", "entre", "e"]}},
     {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
     {"TEXT": ".", "OP":"?"}, 
     {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},  
@@ -136,7 +136,8 @@ def matches(doc):
         "DIR_LOTE": [],
         "FOT": [],
         "PILETA": [],
-        "ESQUINA": []
+        "ESQUINA": [],
+        "FRENTES": []
     }
     matches_locales= prev_result
     matches = matcher(doc)
@@ -160,7 +161,8 @@ def matches_dep(doc):
         "DIR_LOTE": [],
         "FOT": [],
         "PILETA": [],
-        "ESQUINA": []
+        "ESQUINA": [],
+        "FRENTES": []
     }
     matches_dep = dep_matcher(doc)
     for match_id, token_ids in matches_dep:
