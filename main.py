@@ -1,3 +1,4 @@
+import json
 import re
 import spacy
 from spacy.matcher import Matcher, DependencyMatcher
@@ -10,7 +11,10 @@ nlp = spacy.load("es_core_news_lg")
 # for token in doc:
 #     print(token.text, token.pos_, token.dep_)
 # displacy.serve(doc, style="dep")
-matcher = Matcher(nlp.vocab)
+
+#-----------------------------------------------------------
+# DEPENDENCY MATCHER
+#-----------------------------------------------------------
 dep_matcher= DependencyMatcher(nlp.vocab)
 fot = [
     [
@@ -27,49 +31,65 @@ frentes = [
 dep_matcher.add('FOT', patterns=fot)
 dep_matcher.add('FRENTES', patterns=frentes)
 
+#-----------------------------------------------------------
+# MATCHER
+#-----------------------------------------------------------
+matcher = Matcher(nlp.vocab)
 esquina = [
     {"LOWER": "esquina"}, 
 ]
 pileta = [
     {"LOWER": {"IN": ["piscina", "pileta"]}}, 
 ]
-
 dimension = [{"LIKE_NUM": True}, {"LOWER": "x"}, {"LIKE_NUM": True}]
 dir_altura = [
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
+    {"TEXT": ".", "OP":"?"},  
     {"POS": "PROPN", "OP": "+"},  
     {"LOWER": "al"}, 
     {"LIKE_NUM": True}    
 ]
-
 dir_nro = [
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
+    {"TEXT": ".", "OP":"?"}, 
     {"POS": "PROPN", "OP": "+"},  
     {"LOWER": "n"}, 
     {"TEXT": "°"}, 
     {"LIKE_NUM": True}    
 ]
-
+dir_lote= [
+    {"LOWER": "lote"},
+    {"LIKE_NUM": True},
+    {"POS": "PROPN", "OP": "*"}, 
+]
 dir_interseccion = [
-    {"POS": "PROPN", "OP": "+"},  
-    {"LOWER": "y"},       
-    {"POS": "PROPN", "OP": "+"},       
-    {"LIKE_NUM": True, "OP": "?"}   
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
+    {"TEXT": ".", "OP":"?"}, 
+    {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},  
+    {"LOWER": "y"},  
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
+    {"TEXT": ".", "OP":"?"},      
+    {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},     
 ]
-
 dir_entre = [
-    {"LIKE_NUM": True},   
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},  
+    {"TEXT": ".", "OP":"?"}, 
+    {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},   
     {"LOWER": "e/"},
-    {"LIKE_NUM": True},
-    {"IS_ALPHA": True, "OP": "?"},  
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
+    {"TEXT": ".", "OP":"?"}, 
+    {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},  
     {"LOWER": "y"},    
-    {"LIKE_NUM": True},
-    {"IS_ALPHA": True, "OP": "?"},  
+    {"LOWER": {"IN": ["calle", "avenida", "av", "diagonal", "diag"]}, "OP":"?"},   
+    {"TEXT": ".", "OP":"?"}, 
+    {"POS": {"IN": ["PROPN", "NUM"]}, "OP": "+"},  
 ]
-
 matcher.add("DIMENSION", [dimension])
 matcher.add("DIR_NRO", [dir_nro])
 matcher.add("DIR_ALTURA", [dir_altura])
 matcher.add("DIR_INTERSECCION", [dir_interseccion])
 matcher.add("DIR_ENTRE", [dir_entre])
+matcher.add("DIR_LOTE", [dir_lote])
 matcher.add("PILETA", [pileta])
 matcher.add("ESQUINA", [esquina])
 
@@ -99,6 +119,7 @@ result = {
     "DIR_NRO": [],
     "DIR_INTERSECCION": [],
     "DIR_ENTRE": [],
+    "DIR_LOTE": [],
     "FOT": [],
     "PILETA": [],
     "ESQUINA": [],
@@ -112,10 +133,12 @@ def matches(doc):
         "DIR_NRO": [],
         "DIR_INTERSECCION": [],
         "DIR_ENTRE": [],
+        "DIR_LOTE": [],
         "FOT": [],
         "PILETA": [],
         "ESQUINA": []
     }
+    matches_locales= prev_result
     matches = matcher(doc)
     for match_id, start, end in matches:
         matched_span = doc[start:end]
@@ -124,24 +147,46 @@ def matches(doc):
         if prev_result[lista]:
             elegido= max(prev_result[lista], key=len)
             result[lista].append(elegido)
-    
+            matches_locales[lista].append(elegido)
+    return matches_locales
 
 def matches_dep(doc):
+    prev_result = {
+        "DIMENSION": [],
+        "DIR_ALTURA": [],
+        "DIR_NRO": [],
+        "DIR_INTERSECCION": [],
+        "DIR_ENTRE": [],
+        "DIR_LOTE": [],
+        "FOT": [],
+        "PILETA": [],
+        "ESQUINA": []
+    }
     matches_dep = dep_matcher(doc)
     for match_id, token_ids in matches_dep:
         for token_id in token_ids:
             token = doc[token_id]
         result[nlp.vocab.strings[match_id]].append(token.text)
+        prev_result[nlp.vocab.strings[match_id]].append(token.text)
+    return prev_result
+
+def merge(dic1, dic2):
+    for clave, valores in dic1.items():
+        if clave in dic2:
+            dic2[clave].extend(valores)
+        else:
+            dic2[clave] = valores
+    return dic1
 
 input = pd.read_csv('input.csv', sep = '|')
 for index, row in input.iterrows():
     texto= normalizar_direccion(row["descripcion"])
     texto= normalizar_dimensiones(texto)
     doc = nlp(texto)    
-    matches_dep(doc)
-    matches(doc)
+    predichos= merge(matches_dep(doc), matches(doc))
     
+with open("resultado.json", "w", encoding="utf8") as outfile:
+    json.dump(result, outfile, ensure_ascii=False)
 
-result
 
 
