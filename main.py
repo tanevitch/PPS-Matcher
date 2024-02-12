@@ -21,7 +21,7 @@ fot = [
 frentes = [
     [
         {'RIGHT_ID': 'frentes', 'RIGHT_ATTRS': {'LOWER': {"IN": ['frentes', 'frente']}}}, 
-        {'LEFT_ID': 'frentes', 'REL_OP': '>', 'RIGHT_ID': 'num', 'RIGHT_ATTRS': {'DEP': {"IN": ['nummod', 'amod']}}} 
+        {'LEFT_ID': 'frentes', 'REL_OP': '>', 'RIGHT_ID': 'num', 'RIGHT_ATTRS': {'DEP': 'nummod'}} 
     ]
 ]
 dep_matcher.add('FRENTES', patterns=frentes)
@@ -41,7 +41,8 @@ dimension_x = [{'LIKE_NUM': True}, {'LOWER': 'x'}, {'LIKE_NUM': True}]
 
 dimension_larga = [
     {'LIKE_NUM': True}, 
-    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"}, 
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+    {'LOWER': {"IN": ["x", "por", "y"]}},
     {'LIKE_NUM': True},
     {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
 ]
@@ -92,6 +93,7 @@ dir_entre = [
 irregular= [
     {'LOWER': 'irregular'}
 ]
+
 fot=[
     {'TEXT': {'IN':['FOT', 'fot', 'F.O.T', 'f.o.t', 'Fot', 'F.o.t']}},
     {'LOWER':  {'IN':['res', 'residencial']}, "OP": "?"},
@@ -103,6 +105,12 @@ fot=[
     {"IS_PUNCT": True, "OP":"?"},
     {"LIKE_NUM": True, "OP": "?"}
 ]
+
+barrio= [
+    {"LOWER": "barrio"},
+    {'POS':"PROPN", "OP": "+"}
+]
+
 matcher.add('DIMENSION', [dimension_x, dimension_larga])
 matcher.add('DIR_NRO', [dir_nro])
 matcher.add('DIR_ALTURA', [dir_altura])
@@ -113,6 +121,7 @@ matcher.add('PILETA', [pileta])
 matcher.add('ESQUINA', [esquina])
 matcher.add('IRREGULAR', [irregular])
 matcher.add('FOT', [fot])
+matcher.add('BARRIO', [barrio])
 
 
 def add_spaces(match):
@@ -217,11 +226,12 @@ def clear_inter_entre(result):
                 result['DIR_INTERSECCION'].remove(interseccion)
     return result
 
-metricas = {
+metricas = metricas = {
     "direccion": {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -233,6 +243,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -244,6 +255,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -255,6 +267,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -266,6 +279,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -277,6 +291,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -288,6 +303,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -299,6 +315,7 @@ metricas = {
         "tp": 0,
         "fp": 0,
         "fn": 0,
+        "tn": 0,
         "p": 0.0,
         "r": 0.0,
         "f1": 0.0,
@@ -307,7 +324,7 @@ metricas = {
         ]
     }
 }
-input = pd.read_csv('ground_truth.csv', sep = '|')
+input = pd.read_csv('ground_truth_75.csv', sep = '|')
 input = input.fillna("")
 
 for index, row in input.iterrows():
@@ -324,32 +341,42 @@ for index, row in input.iterrows():
         'IRREGULAR': max(predichos["IRREGULAR"], key=len) if predichos["IRREGULAR"] else "",
         'DIMENSION': max(predichos["DIMENSION"], key=len) if predichos["DIMENSION"] else "",
         'ESQUINA': max(predichos["ESQUINA"], key=len) if predichos["ESQUINA"] else "",
-        'BARRIO': max(predichos["ESQUINA"], key=len) if predichos["ESQUINA"] else "",
+        'BARRIO': max(predichos["BARRIO"], key=len) if predichos["BARRIO"] else "",
         'FRENTES': max(predichos["FRENTES"], key=len) if predichos["FRENTES"] else "",
         'PILETA': max(predichos["PILETA"], key=len) if predichos["PILETA"] else "",
     }
 
     for respuesta, esperada, key_metrica in zip(prev_result, list(row[1:]), metricas):
         rta= prev_result[respuesta]
-        if key_metrica == "medidas":
-            esperada= normalizar_dimensiones(esperada)
-        if key_metrica in ["direccion","fot", "medidas", "barrio", "frentes"]:
-            correcta= nlp(rta).similarity(nlp(esperada)) > 0.5
-        elif key_metrica in [ "irregular", "esquina", "pileta"]:
-            correcta= True if esperada==rta or (rta != "" and esperada == True) else False
-
-        if correcta:
-            metricas[key_metrica]["tp"]+=1
+        if rta == "" and esperada == "":
+            metricas[key_metrica]["tn"]+=1
         else:
-            metricas[key_metrica]["error"].append({
-                "contexto": row["descripcion"],
-                "respuesta_predicha": rta,
-                "respuesta_esperada": esperada
-            })
-            if rta == "" and esperada != "":
-                metricas[key_metrica]["fn"]+=1
-            elif esperada == "" and rta != "":
-                metricas[key_metrica]["fp"]+=1
+            if key_metrica == "medidas":
+                esperada= normalizar_dimensiones(esperada)
+            if key_metrica == "fot":
+                
+                esperada= ' '.join([token.text for token in nlp(esperada) if not token.is_punct])
+                rta= ' '.join([token.text for token in nlp(rta) if not token.is_punct])
+
+            if key_metrica in ["direccion","fot", "medidas", "barrio", "frentes"]:
+                correcta= nlp(rta).similarity(nlp(esperada)) > 0.9
+            elif key_metrica in [ "irregular", "esquina", "pileta"]:
+                correcta= rta != "" and esperada == True
+
+            if correcta:
+                metricas[key_metrica]["tp"]+=1
+            else:
+                metricas[key_metrica]["error"].append({
+                    "contexto": row["descripcion"],
+                    "respuesta_predicha": rta,
+                    "respuesta_esperada": esperada
+                })
+                if rta == "" and esperada != "":
+                    metricas[key_metrica]["fn"]+=1
+                elif (esperada == "" and rta != ""):
+                    metricas[key_metrica]["fp"]+=1
+                elif esperada!=rta:
+                    metricas[key_metrica]["tn"]+=1
 
 for metrica, valores in metricas.items():
     tp = valores["tp"]
@@ -375,7 +402,7 @@ for metrica, valores in metricas.items():
     metricas[metrica]["r"] = recall
     metricas[metrica]["f1"] = f1_score
 
-with open('metricas.json', 'w', encoding="utf8") as fp:
+with open('resultados.json', 'w', encoding="utf8") as fp:
     json.dump(metricas, fp, ensure_ascii=False)
 
 
