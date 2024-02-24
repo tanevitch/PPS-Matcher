@@ -257,13 +257,13 @@
         ]
     },
     "irregular": {
-        "tp": 7,
+        "tp": 8,
         "fp": 0,
-        "fn": 7,
+        "fn": 6,
         "tn": 60,
         "p": 1.0,
-        "r": 0.5,
-        "f1": 0.6666666666666666,
+        "r": 0.5714285714285714,
+        "f1": 0.7272727272727273,
         "error": [
             {
                 "contexto": "lote en esquina, 10mts x 35mts + martillo. 224 m2, fot 3 mas premios, fos 0.6",
@@ -277,11 +277,6 @@
             },
             {
                 "contexto": "1.200 m2 - Panamericana Km 42, mano a Capital. Localidad de Del Viso, Partido de Pilar. Provincia de Buenos Aires   Resumen Áreas Totales   1.200 m2 lote      70 m de frente      Forma triangular   En esquina",
-                "respuesta_predicha": "",
-                "respuesta_esperada": true
-            },
-            {
-                "contexto": "Terreno a la venta (Lote 8 - Manzana nº1), dimensiones irregulares con frente a tres calles principales, y vistas al parque verde central del predio. Son 850 m2 de superficie total. El Loteo cuenta con frente y acceso directo sobre Ruta nº 1, y bajada también directa al canal por donde se accede al río",
                 "respuesta_predicha": "",
                 "respuesta_esperada": true
             },

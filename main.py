@@ -95,7 +95,7 @@ dir_entre = [
     {'POS': {'IN': ['PROPN', 'NUM']}, 'OP': '+'},  
 ]
 irregular= [
-    {'LOWER': 'irregular'}
+    {'LEMMA': 'irregular'}
 ]
 
 fot=[
