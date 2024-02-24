@@ -35,12 +35,12 @@
             },
             {
                 "contexto": "LOTE DE 10X30 EN LOMAS DEL MIRADOR. EXCELENTE ACCESO A UNA CUADRA DE GRAL PAZ Y 3 DE MOSCONI Y DE TONELERO. FOT 2,25. FOS 0,6",
-                "respuesta_predicha": ". FOT 2,25",
+                "respuesta_predicha": "FOT 2,25",
                 "respuesta_esperada": ""
             },
             {
                 "contexto": "Terreno en venta. Lote irregular de 131 m2. Con frente de 8.76 , un lateral de 16,8 y otro lateral de 13,6. FOT 2,5",
-                "respuesta_predicha": ". FOT 2,5",
+                "respuesta_predicha": "FOT 2,5",
                 "respuesta_esperada": ""
             },
             {
@@ -60,12 +60,12 @@
             },
             {
                 "contexto": "Ubicado en una esquina muy importante de Villa Ballester. Con acceso a varias líneas de colectivos. Frente 22 m, lateral 19.33 m y superficie de 422 m2. Cantidad de pisos a construir PB más 3 pisos. Estudio de factibilidad disponible. fot 3 + 30% en premios. Se escuchan ofertas. Se vende ya !",
-                "respuesta_predicha": ". fot 3",
+                "respuesta_predicha": "fot 3",
                 "respuesta_esperada": ""
             },
             {
                 "contexto": "Sobre lote de 20x100. Amplio parque al frente, pileta de 4 x 8 y taller. Casa principal Living comedor, cocina, 1 dormitorio amplio con baño, sector lavadero y otra habitación. Tiene otra casa que requiere puesta a punto pero de la misma comodidad. Luz trifasica, gas natural, Agua de pozo c/bomba sumergible y tanque con automático, pozo nuevo. Pileta 4x8 con lajas térmicas.",
-                "respuesta_predicha": ". Pileta 4",
+                "respuesta_predicha": "Pileta 4",
                 "respuesta_esperada": ""
             },
             {
@@ -75,13 +75,8 @@
             },
             {
                 "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x  mts. x 25,70 mts. Sup. Cubierta: 380,3.",
-                "respuesta_predicha": "Quilmes N° 1540/1550",
+                "respuesta_predicha": "Quilmes N ° 1540/1550",
                 "respuesta_esperada": "Av. De los Quilmes N° 1540/1550"
-            },
-            {
-                "contexto": "Hermoso lote de 1098 m2², ubicado en una excelente zona del Barrio Las Lomas de San Isidro. Av. Fleming 2800. Próximo al hipodromo de San Isidro. FOS 0.4 439.2 m2 FOT 0.8 878.4 m2 Dimensión mts * Uso exclusivo vivienda Unifamiliar!",
-                "respuesta_predicha": ". Av. Fleming 2800",
-                "respuesta_esperada": "Av. Fleming 2800"
             },
             {
                 "contexto": "lote en esquina, 10mts x 35mts + martillo. 224 m2, fot 3 mas premios, fos 0.6",
@@ -92,6 +87,11 @@
                 "contexto": "SE TRATA DE UN TERRENO CONFORMADO POR 3 LOTES DE 8.66 X 50M ZONIFICACION: R2 b Residencial de baja densidad F.O.S. máximo = 0,60 F.O.T. máximo = 2,2 Densidad neta potencial: 800 hab/ha. Altura máxima: R = h/d = 1,6 Altura máxima basamento: 6 m. Altura mínima interior P.B.: 2,80 m. Altura mínima interior sobre P.B.: 2,60 m",
                 "respuesta_predicha": "= 1,6",
                 "respuesta_esperada": ""
+            },
+            {
+                "contexto": "Casa IDEAL INVERSORES en construccion!!! Inmejorable casa en la calle Sgto. Cabral al 560 LAGOS DE CANNING con $ de expensas (aprox). En su totalidad mide 670 m2, de los cuales 290 m2 son cubiertos y 380 m2 descubiertos. CARACTERISTICAS: ALTURA 6 METROS SIN COLUMNAS. PORTON: 4.80 mts. alto y 4.50 mts. ancho. LOTE: 10 X 30. CUBIERTOS: 190 M2. FUERZA MOTRIZ. FOS 0.60. FOT 1.20",
+                "respuesta_predicha": "Cabral al 560",
+                "respuesta_esperada": "Sgto. Cabral al 560"
             },
             {
                 "contexto": "LOTE CON MEJORAS (CASA A REFACCIONAR) 8,77 X 26,23 X 8,77 X 26,07, SUP.TOTAL 226 MTS2.-  TODOS LOS SERVICIOS.- FOS 0,6   FOT 1,6. ZONIFICACION RTMA.-  ESCRITURA A CARGO DEL COMPRADOR.",
@@ -110,7 +110,7 @@
             },
             {
                 "contexto": "Ideal para desarrollo Inmobiliario!! Ubicado en zona céntrica con amplio crecimiento de emprendimientos en altura; a 2 cuadras de la Av. Rivadavia; de la Plaza San Martín y de la Estación Ituzaingó del Tren Sarmiento. Superficie Total del Terreno: 450m2. Con doble frente de 17,32 mts y 26 mts de fondo (Conformado por dos lotes de 8,66 x 26) Actualmente con vivienda construída en una planta (más una habitación con baño en 1er piso) de 250m2 cubiertos. Fondo Libre. FOT 3 FOS 0,6 POSIBILIDAD DE INCORPORAR LOTE ADJUNTO A LA OPERACION",
-                "respuesta_predicha": ". FOT 3",
+                "respuesta_predicha": "FOT 3",
                 "respuesta_esperada": ""
             },
             {
@@ -150,12 +150,12 @@
             },
             {
                 "contexto": "PUEYRREDON 86 BIS. Casa 4 dormitorios, 2 baños, patio con parrillero y cochera. Superficie del terreno de 145 m2 (irregular) con Frente de 7.5 metros, contra frente de 9.8 metros, y fondo de 19.17 metros. Planos de mensura desactualizados.",
-                "respuesta_predicha": ". Casa 4",
+                "respuesta_predicha": "Casa 4",
                 "respuesta_esperada": "PUEYRREDON 86 BIS"
             },
             {
                 "contexto": "Terreno ubicado sobre calle Buenos Aires entre la calles Cerrito e Ituzaingó. Terreno irregular: Frente: 10,38  (contra frente 5,71) Fondo: 19,93. Según análisis normativa: posibilidad de PB +10",
-                "respuesta_predicha": "PB +10",
+                "respuesta_predicha": "Cerrito e Ituzaingó",
                 "respuesta_esperada": "calle Buenos Aires entre la calles Cerrito e Ituzaingó"
             },
             {
@@ -210,7 +210,7 @@
             },
             {
                 "contexto": "Importante chalet en Barrio Parque Calchaqui. Calle 341 (Craviotto) entre 382 y 383. 6 ambientes, 4 dormitorios, 5 baños, 2 pisos, lote de 15.00 X 50.00, total 750 m2, cubierta 410 m2. Recepción, toilette, amplio living con aberturas hacia el parque, comedor principal, cocina amueblada + comedor diario, dormitorio con placard, baño completo con ante baño, dormitorio principal con pisos tarugados en suite, con baño completo, amplisimo verde, pileta, parrilla.",
-                "respuesta_predicha": ". Calle 341",
+                "respuesta_predicha": "Calle 341",
                 "respuesta_esperada": "Calle 341 (Craviotto) entre 382 y 383"
             },
             {
@@ -221,18 +221,18 @@
         ]
     },
     "fot": {
-        "tp": 26,
+        "tp": 27,
         "fp": 0,
         "fn": 3,
-        "tn": 45,
+        "tn": 44,
         "p": 1.0,
-        "r": 0.896551724137931,
-        "f1": 0.9454545454545454,
+        "r": 0.9,
+        "f1": 0.9473684210526316,
         "error": [
             {
                 "contexto": "Excelente terreno de 8,66 mts de frente por 43,50 mts de fondo, sobre Av. Manuel Belgrano al 6200. Ideal inversor. El FOT es de 2.5.",
                 "respuesta_predicha": "",
-                "respuesta_esperada": "FOT es de 2.5"
+                "respuesta_esperada": "FOT 2.5"
             },
             {
                 "contexto": "Ubicado en una esquina muy importante de Villa Ballester. Con acceso a varias líneas de colectivos. Frente 22 m, lateral 19.33 m y superficie de 422 m2. Cantidad de pisos a construir PB más 3 pisos. Estudio de factibilidad disponible. fot 3 + 30% en premios. Se escuchan ofertas. Se vende ya !",
@@ -252,12 +252,7 @@
             {
                 "contexto": "Importante lote ubicado en excelente esquina de La Plata, con un superficie total de 1975m2, con medidas de 32,91m2 sobre calle 19 y 60,00 sobre calle 36. Zonificación UC/3, con un FOT de 5135m2. El lote posee un total de 450m2 edificados.",
                 "respuesta_predicha": "",
-                "respuesta_esperada": "FOT de 5135m2"
-            },
-            {
-                "contexto": "ATENCIÓN CONSTRUCTORAS : Excelente lote de 8,66 de Frente x 35 de largo, ideal inversión para construcción de departamentos en torre,  emprendimiento o vivienda , en zona centrica En inmejorable ubicación sobre la calle Sitio de Montevideo entre Salta y Oncativo. posee un FOS de 0.6 y un FOT de 3. CONSULTE OPCIONES.SE ESCUCHAN OFERTAS.SE TOMA PROPIEDAD TERMINADA POR MENOR VALOR.",
-                "respuesta_predicha": "FOT 3",
-                "respuesta_esperada": "FOT de 3"
+                "respuesta_esperada": "FOT 5135m2"
             }
         ]
     },
@@ -509,13 +504,13 @@
         "error": []
     },
     "barrio": {
-        "tp": 5,
+        "tp": 4,
         "fp": 1,
         "fn": 12,
-        "tn": 56,
-        "p": 0.8333333333333334,
-        "r": 0.29411764705882354,
-        "f1": 0.4347826086956522,
+        "tn": 57,
+        "p": 0.8,
+        "r": 0.25,
+        "f1": 0.38095238095238093,
         "error": [
             {
                 "contexto": "Barrio Cerrado El Paso - Del Viso Lote A22 Lote interno, 744 m2 Cercano a área deportiva y entrada del barrio. El precio publicado incluye un 35% de descuento por ser valor de preventa",
@@ -568,6 +563,11 @@
                 "respuesta_esperada": "Barrio cerrado San Simón"
             },
             {
+                "contexto": "PRE - VENTA de Lotes en BARRIO CERRADO ESTANCIA PIÑERO. Los terrenos son 500 m2, 12 metros de Frente y 40 de Fondo. Contamos con distintas orientaciones. Red de Luz Subterranea, Red de Agua, Iluminación Interna Led, Calles Pavimentadas, Forestación en espacios recreacionales con circuitos aerobicos, Laguna Artificial y Piletas con Juegos para Niños.",
+                "respuesta_predicha": "BARRIO CERRADO",
+                "respuesta_esperada": "BARRIO CERRADO ESTANCIA PIÑERO"
+            },
+            {
                 "contexto": "Te presentamos un hermoso chalet de 3 ambientes con gran parque, ubicado en La Primavera entre Zeballos y Godoy Cruz, en el barrio Las Dalias, próximo a Parque Camet. Esta propiedad posee un amplio y muy cómodo living con hogar y entrepiso con playroom con vista hacia el living. La cocina comedor se encuentra mediante barra desayunadora, cuenta con doble ventana que le otorga mucha luminosidad, mesada en \"L\" y espacio para lavarropas. Los dos dormitorios tienen amplios placares con bauleras. El baño es completo, con ducha y revestimientos cerámicos. Además, cuenta con un gran parque en el cual dispone de un quincho semicubierto, pileta y entrada pasante para autos. El chalet posee todos los servicios y se encuentra en buen estado general. Tiene paredón perimetral. El lote tiene 15 metros de frente por 26 metros de fondo, con una superficie total de 390 m2.",
                 "respuesta_predicha": "",
                 "respuesta_esperada": "barrio Las Dalias"
@@ -600,18 +600,23 @@
         ]
     },
     "frentes": {
-        "tp": 3,
+        "tp": 4,
         "fp": 1,
-        "fn": 8,
-        "tn": 62,
-        "p": 0.75,
-        "r": 0.2727272727272727,
-        "f1": 0.39999999999999997,
+        "fn": 4,
+        "tn": 65,
+        "p": 0.8,
+        "r": 0.5,
+        "f1": 0.6153846153846154,
         "error": [
             {
                 "contexto": "Excelente propiedad sobre esquina con un frente lineal de 162 metros y salida a tres calles, Cabildo, Guatemala y Pilcomayo. Superficie de terreno 6200 m2. Contrapiso para camiones en casi su totalidad. Sectores descubiertos a reciclar. Zona industrial. Apto todo destino. FOT residencial: 2, FOT industrial: 1,5, FOS: 60% max.",
-                "respuesta_predicha": "",
+                "respuesta_predicha": "frente lineal",
                 "respuesta_esperada": "un frente lineal"
+            },
+            {
+                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x  mts. x 25,70 mts. Sup. Cubierta: 380,3.",
+                "respuesta_predicha": "frentes ubicado",
+                "respuesta_esperada": "tres frentes"
             },
             {
                 "contexto": "El lote 24 tiene 1.036 m2, con un frente de 23 metros en un área central del Barrio Pebble Beach de Pilar Golf. ¡Apto para construir inmediatamente! El precio publicado es para pago al contado. Ofrecemos finaciación: USD 49.000 como anticipo y 24 cuotas de USD 4.300.- Te invitamos a recorrer el lugar y estamos a tu disposición para todo lo que quieras saber.",
@@ -624,23 +629,13 @@
                 "respuesta_esperada": ""
             },
             {
-                "contexto": "Ideal para desarrollo Inmobiliario!! Ubicado en zona céntrica con amplio crecimiento de emprendimientos en altura; a 2 cuadras de la Av. Rivadavia; de la Plaza San Martín y de la Estación Ituzaingó del Tren Sarmiento. Superficie Total del Terreno: 450m2. Con doble frente de 17,32 mts y 26 mts de fondo (Conformado por dos lotes de 8,66 x 26) Actualmente con vivienda construída en una planta (más una habitación con baño en 1er piso) de 250m2 cubiertos. Fondo Libre. FOT 3 FOS 0,6 POSIBILIDAD DE INCORPORAR LOTE ADJUNTO A LA OPERACION",
-                "respuesta_predicha": "",
-                "respuesta_esperada": "doble frente"
-            },
-            {
-                "contexto": "CASA SUCRE - BELGRANO R Casa sobre lote propio de doble frente (17.35 x 35) con balcones terraza, jardín, piscina, solárium y quincho con parrilla",
-                "respuesta_predicha": "",
-                "respuesta_esperada": "doble frente"
-            },
-            {
                 "contexto": "Casas Doble Frente de 20, 903 m2 de Lote.- Toma Departamento en Parte de Pago, Zona Olivos /Vicente López. la Misma Cuenta con Un Living Comedor de 5 x 9.50 con Pisos en Cerámicos, Gran Cocina Comedor Diario Refacccionada a Nueva de 6.30 x 6.70 con Mucha Luz y Vista y Salida al Parque, Lavadero Independiente , Dependencia de Servicio con Baño, Toillete con Ducha.-calefacción Central por Radiadores. Gran Parque Arbolado con Piscina, Quincho, Parrilla y Entrada Pasante para Varios Autos.",
                 "respuesta_predicha": "",
                 "respuesta_esperada": "Doble Frente "
             },
             {
                 "contexto": "Terreno de TRIPLE FRENTE en venta, entrada por Av San Martín (doble frente) y por Miguel ángel (frente simple). La de Av San Martín tiene 17,38 de frente X 48,55 de fondo, con posibilidad de construir 4032,2 m2 vendibles distribuidos en 7 pisos.",
-                "respuesta_predicha": "",
+                "respuesta_predicha": "frente simple",
                 "respuesta_esperada": "TRIPLE FRENTE"
             },
             {
