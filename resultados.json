@@ -74,7 +74,7 @@
                 "respuesta_esperada": "calle Lope de Vega al 2600"
             },
             {
-                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x  mts. x 25,70 mts. Sup. Cubierta: 380,3.",
+                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x 50 mts. x 25,70 mts. Sup. Cubierta: 380,3.",
                 "respuesta_predicha": "Quilmes N ° 1540/1550",
                 "respuesta_esperada": "Av. De los Quilmes N° 1540/1550"
             },
@@ -304,12 +304,12 @@
     },
     "medidas": {
         "tp": 21,
-        "fp": 3,
-        "fn": 25,
-        "tn": 25,
-        "p": 0.875,
-        "r": 0.45652173913043476,
-        "f1": 0.6,
+        "fp": 1,
+        "fn": 29,
+        "tn": 23,
+        "p": 0.9545454545454546,
+        "r": 0.42,
+        "f1": 0.5833333333333334,
         "error": [
             {
                 "contexto": "Excelente terreno de 8,66 mts de frente por 43,50 mts de fondo, sobre Av. Manuel Belgrano al 6200. Ideal inversor. El FOT es de 2.5.",
@@ -320,11 +320,6 @@
                 "contexto": "Lote en venta sobre la calle Rocal al 1600 entre Mons Blois y Fraga, que mide 12.90mts de frente por 48mts de fondo. En el mismo se encuentra construida una casa a refaccionar de 100m2 cub aprox, de construcción solida con techo de losa. Zonificación Rmi   (FOS 0,6  FOT 0,8)  Posibilidad de construir PB + Primer Nivel. Ideal emprendimiento.",
                 "respuesta_predicha": "",
                 "respuesta_esperada": "12.90mts de frente por 48mts de fondo"
-            },
-            {
-                "contexto": "Semipiso de 1 dormitorio la estrenar en calle 7 e/71 y 72. Disponible en piso 5° al frente y 6° al contrafrente. Excelente iluminación y ventilación cruzada. ALQUILADO DESDE MARZO 2023 A $70.000 un dormitorio con placar living con balcón cocina con mueble bajo mesada baño completo lavadero separado cochera optativa Listo para escriturar.",
-                "respuesta_predicha": "71 y 72",
-                "respuesta_esperada": ""
             },
             {
                 "contexto": "Terreno en venta. Lote irregular de 131 m2. Con frente de 8.76 , un lateral de 16,8 y otro lateral de 13,6. FOT 2,5",
@@ -342,9 +337,9 @@
                 "respuesta_esperada": "10 metros al frente y 11,91 al fondo y de 48 metros en uno de sus lados en tanto que el restante asciende a 53 metros"
             },
             {
-                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x  mts. x 25,70 mts. Sup. Cubierta: 380,3.",
+                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x 50 mts. x 25,70 mts. Sup. Cubierta: 380,3.",
                 "respuesta_predicha": "",
-                "respuesta_esperada": "14,80 mts. x  mts. x 25,70 mts"
+                "respuesta_esperada": "14,80 mts. x 50 mts. x 25,70 mts"
             },
             {
                 "contexto": "lote en esquina, 10mts x 35mts + martillo. 224 m2, fot 3 mas premios, fos 0.6",
@@ -353,17 +348,12 @@
             },
             {
                 "contexto": "Calle 78 entre 28 y 29 - Lote en venta Características: lote de 10 x 30mts. Valor: U$S 15.000",
-                "respuesta_predicha": "28 y 29",
+                "respuesta_predicha": "",
                 "respuesta_esperada": "10 x 30"
             },
             {
-                "contexto": "Venta de Lote, Villa Gesell. Avenida 2 e/ Paseo 118 y 119. Lote multifamiliar. Ideal Inversores. Lote Multifamiliar de alta densidad a 2 cuadras de la playa. Excelente ubicación. Superficies: Sup. Lote: 1304,74 m2 (20,00m de frente). Zonificación: RMA. FOS 0.60 - FOT 2.00 - DENSIDAD 800 HAB/HA - C.U.V. 0.025. POTENCIAL CONSTRUCTIVO HASTA 32 UNIDADES DE VIVIENDA. Puede construirse un máximo de 2607,48 m2 distribuidos en 6 Pisos.",
-                "respuesta_predicha": "118 y 119",
-                "respuesta_esperada": ""
-            },
-            {
                 "contexto": "Importante lote ubicado en excelente esquina de La Plata, con un superficie total de 1975m2, con medidas de 32,91m2 sobre calle 19 y 60,00 sobre calle 36. Zonificación UC/3, con un FOT de 5135m2. El lote posee un total de 450m2 edificados.",
-                "respuesta_predicha": "19 y 60,00",
+                "respuesta_predicha": "",
                 "respuesta_esperada": "32,91m2 sobre calle 19 y 60,00 sobre calle 36"
             },
             {
@@ -388,7 +378,7 @@
             },
             {
                 "contexto": "Ideal para desarrollo Inmobiliario!! Ubicado en zona céntrica con amplio crecimiento de emprendimientos en altura; a 2 cuadras de la Av. Rivadavia; de la Plaza San Martín y de la Estación Ituzaingó del Tren Sarmiento. Superficie Total del Terreno: 450m2. Con doble frente de 17,32 mts y 26 mts de fondo (Conformado por dos lotes de 8,66 x 26) Actualmente con vivienda construída en una planta (más una habitación con baño en 1er piso) de 250m2 cubiertos. Fondo Libre. FOT 3 FOS 0,6 POSIBILIDAD DE INCORPORAR LOTE ADJUNTO A LA OPERACION",
-                "respuesta_predicha": "17,32 mts y 26 mts",
+                "respuesta_predicha": "8,66 x 26",
                 "respuesta_esperada": "frente de 17,32 mts y 26 mts de fondo"
             },
             {
@@ -448,12 +438,12 @@
             },
             {
                 "contexto": "Casa sobre calle 40 e/ 22 y 23 de La Plata. Lote irregular: Frente: 9.00 mts. Lateral Der.: 36.85 mts. Lateral Izq.: 27.85 mts. Contra-Frente: 12.72",
-                "respuesta_predicha": "22 y 23",
+                "respuesta_predicha": "",
                 "respuesta_esperada": "Frente: 9.00 mts. Lateral Der.: 36.85 mts. Lateral Izq.: 27.85 mts. Contra-Frente: 12.72"
             },
             {
                 "contexto": "Ubicación: Calle 2 bis Nº 1427, entre 517 y 518, Ringuelet, La Plata. Medidas del lote: 10 metros de frente por 27,5 metros de fondo. Comodidades: 2 dormitorio, cocina, living comedor, baño, garage, entrada para auto, patio, lavadero, fondo libre.",
-                "respuesta_predicha": "517 y 518",
+                "respuesta_predicha": "",
                 "respuesta_esperada": "10 metros de frente por 27,5 metros de fondo"
             },
             {
@@ -614,7 +604,7 @@
                 "respuesta_esperada": "un frente lineal"
             },
             {
-                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x  mts. x 25,70 mts. Sup. Cubierta: 380,3.",
+                "contexto": "Se trata de un galpón de tres frentes, ubicado sobre Av. De los Quilmes N° 1540/1550 a escasos metros del triangulo de Bernal, en zonificación R3  (permitiendo industrias de actividad inocua) de excelente acceso y de salida rápida a autopista Buenos Aires la Plata,diferentes puntos del conurbano como así también a Capital Federal.Galpón N° 1540:Implantado sobre dos lotes de terreno.En su primera mitad de 14,80 mts. x 50 mts. x 25,70 mts. Sup. Cubierta: 380,3.",
                 "respuesta_predicha": "frentes ubicado",
                 "respuesta_esperada": "tres frentes"
             },

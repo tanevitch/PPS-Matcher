@@ -37,17 +37,17 @@ esquina = [
 pileta = [
     {'LOWER': {'IN': ['piscina', 'pileta']}}, 
 ]
-medidas_x = [
-    {'LIKE_NUM': True}, 
-    {'LOWER': 'x'}, 
-    {'LIKE_NUM': True}
-    ]
-
-medidas_larga = [
+medidas = [
     {'LIKE_NUM': True}, 
     {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
-    {'LOWER': {"IN": ["x", "por", "y"]}},
+    {'LOWER': 'x'}, 
     {'LIKE_NUM': True},
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+    {'LOWER': 'x', 'OP': '?'}, 
+    {'LIKE_NUM': True, 'OP': '?'},
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+    {'LOWER': 'x', 'OP': '?'}, 
+    {'LIKE_NUM': True, 'OP': '?'},
     {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
 ]
 
@@ -115,7 +115,7 @@ barrio= [
     {'POS':"PROPN", "OP": "+"}
 ]
 
-matcher.add('medidas', [medidas_x, medidas_larga])
+matcher.add('medidas', [medidas])
 matcher.add('DIR_NRO', [dir_nro])
 matcher.add('DIR_ALTURA', [dir_altura])
 matcher.add('DIR_INTERSECCION', [dir_interseccion])
