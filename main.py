@@ -100,14 +100,9 @@ irregular= [
 
 fot=[
     {'LOWER': {'IN':['fot', 'f.o.t']}},
-    {'LOWER':  {'IN':['res', 'residencial']}, "OP": "?"},
+    {'LOWER':  {'IN':['res', 'residencial', 'comercial', 'com', 'industrial']}, "OP": "?"},
     {"IS_PUNCT": True, "OP":"?"},
-    {"LIKE_NUM": True},
-    {"IS_PUNCT": True, "OP":"?"},
-    {'LOWER': {'IN':['fot', 'f.o.t']}, "OP": "?"},
-    {'LOWER': {'IN':['comercial', 'com', 'industrial']}, "OP": "?"},
-    {"IS_PUNCT": True, "OP":"?"},
-    {"LIKE_NUM": True, "OP": "?"}
+    {"LIKE_NUM": True}
 ]
 
 barrio= [
@@ -271,7 +266,10 @@ def matches(doc):
         prev_result[NLP.vocab.strings[match_id]].append(matched_span.text)
     for lista in prev_result:
         if prev_result[lista]:
-            elegido= max(prev_result[lista], key=len)
+            if lista=="fot":
+                elegido= " ".join(prev_result[lista])
+            else:
+                elegido= max(prev_result[lista], key=len)
             matches_locales[lista].append(elegido)
     return matches_locales
 
@@ -391,7 +389,7 @@ if __name__ == "__main__":
     input = input.fillna("")
 
     for index, row in input.iterrows():
-        texto= pre_procesamiento(row["descripcion"])    
+        texto= pre_procesamiento(row['descripcion'])    
         predichos = obtener_matches(NLP(texto))
         procesar_matches(predichos)
         calcular_performance_por_variable()
