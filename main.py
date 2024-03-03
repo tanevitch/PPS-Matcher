@@ -76,7 +76,7 @@ dir_interseccion = [
     {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
     {'TEXT': '.', 'OP':'?'}, 
     {'POS': {'IN': ['PROPN', 'NUM']}, 'OP': '+'},  
-    {'LOWER': {"IN": ["y", "esquina", "esq", "e"]}},  
+    {'LOWER': {"IN": ["y", "esquina", "esq.", "e"]}},  
     {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
     {'TEXT': '.', 'OP':'?'},      
     {'POS': {'IN': ['PROPN', 'NUM']}, 'OP': '+'},     
@@ -235,7 +235,7 @@ def add_spaces_entre(match):
     medidas= match.group(0)
     return medidas.replace('e/', 'e/ ')
 
-def normalizar_medidases(text):   
+def normalizar_medidas(text):   
     medidas_regex = re.compile(r'(\b\d+(?:,\d+)?\s?[xX]\s?\d+(?:,\d+)?\b)') 
     return medidas_regex.sub(add_spaces_x, text)
     
@@ -305,6 +305,7 @@ def merge(dic1, dic2):
             dic2[clave] = valores
     return dic2
 
+# Si hay un match de dir interseccion y dir entre, donde el dir interseccion es substring del dir entre, se deja el dir entre
 def clear_inter_entre(result):
     for interseccion in result.get('DIR_INTERSECCION', []):
         for entre in result.get('DIR_ENTRE', []):
@@ -312,8 +313,9 @@ def clear_inter_entre(result):
                 result['DIR_INTERSECCION'].remove(interseccion)
     return result
 
+
 def pre_procesamiento(texto: str):
-    return normalizar_medidases(normalizar_direccion(texto))
+    return normalizar_medidas(normalizar_direccion(texto))
 
 def calcular_performance_por_variable():
     for variable, valores in METRICAS.items():
@@ -356,7 +358,7 @@ def procesar_matches(predichos):
             METRICAS[variable]["tn"]+=1
         else:
             if variable == "medidas":
-                esperada= normalizar_medidases(esperada)
+                esperada= normalizar_medidas(esperada)
             if variable == "fot":
                 esperada= ' '.join([token.text for token in NLP(esperada) if not token.is_punct])
                 rta= ' '.join([token.text for token in NLP(rta) if not token.is_punct])
@@ -366,7 +368,7 @@ def procesar_matches(predichos):
             elif variable in [ "irregular", "esquina", "pileta"]:
                 correcta= rta != "" and rta == esperada
 
-            if correcta:
+            if correcta: 
                 METRICAS[variable]["tp"]+=1
             else:
                 METRICAS[variable]["error"].append({
@@ -376,11 +378,9 @@ def procesar_matches(predichos):
                 })
                 if rta == "" and esperada != "":
                     METRICAS[variable]["fn"]+=1
-                elif (esperada == "" and rta != ""):
+                elif (esperada == "" and rta != "") or (esperada!=rta):
                     METRICAS[variable]["fp"]+=1
-                elif esperada!=rta:
-                    METRICAS[variable]["tn"]+=1
-
+ 
 def obtener_matches(doc):
     return clear_inter_entre(merge(matches_dep(doc), matches(doc)))
 
