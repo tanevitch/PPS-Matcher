@@ -22,6 +22,11 @@ frentes = [
     [
         {'RIGHT_ID': 'frentes', 'RIGHT_ATTRS': {'LOWER': {'IN':['frente', 'frentes']}}}, 
         {'LEFT_ID': 'frentes', 'REL_OP': '>', 'RIGHT_ID': 'num', 'RIGHT_ATTRS': {'DEP': {"IN": ['nummod', 'amod']}}} 
+    ],
+    [
+        {'RIGHT_ID': 'frentes', 'RIGHT_ATTRS': {'LOWER': 'salida'}},
+        {'LEFT_ID': 'frentes', 'REL_OP': '>', 'RIGHT_ID': 'calles', 'RIGHT_ATTRS': {'DEP': 'obl'}}, 
+        {'LEFT_ID': 'calles', 'REL_OP': '>', 'RIGHT_ID': 'num', 'RIGHT_ATTRS': {'DEP': 'nummod'}} 
     ]
 ]
 dep_matcher.add('frentes', patterns=frentes)
@@ -31,47 +36,7 @@ dep_matcher.add('fot', patterns=fot)
 # MATCHER
 #-----------------------------------------------------------
 matcher = Matcher(NLP.vocab)
-esquina = [
-    {'LOWER': 'esquina'}, 
-]
-pileta = [
-    {'LOWER': {'IN': ['piscina', 'pileta']}}, 
-]
-medidas = [
-    {'LIKE_NUM': True}, 
-    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
-    {'LOWER': 'x'}, 
-    {'LIKE_NUM': True},
-    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
-    {'LOWER': 'x', 'OP': '?'}, 
-    {'LIKE_NUM': True, 'OP': '?'},
-    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
-    {'LOWER': 'x', 'OP': '?'}, 
-    {'LIKE_NUM': True, 'OP': '?'},
-    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
-]
 
-
-dir_altura = [
-    {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
-    {'TEXT': '.', 'OP':'?'},  
-    {'POS': 'PROPN', 'OP': '+'},  
-    {'LOWER': 'al', "OP": "?"}, 
-    {'LIKE_NUM': True}    
-]
-dir_nro = [
-    {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
-    {'TEXT': '.', 'OP':'?'}, 
-    {'POS': 'PROPN', 'OP': '+'},  
-    {'LOWER': 'n'}, 
-    {'TEXT': '°'}, 
-    {'LIKE_NUM': True}    
-]
-dir_lote= [
-    {'LOWER': 'lote'},
-    {'LIKE_NUM': True},
-    {'POS': 'PROPN', 'OP': '*'}, 
-]
 dir_interseccion = [
     {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
     {'TEXT': '.', 'OP':'?'}, 
@@ -94,33 +59,75 @@ dir_entre = [
     {'TEXT': '.', 'OP':'?'}, 
     {'POS': {'IN': ['PROPN', 'NUM']}, 'OP': '+'},  
 ]
-irregular= [
-    {'LEMMA': 'irregular'}
-]
 
-fot=[
+matcher.add('medidas', [[
+    {'LIKE_NUM': True}, 
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+    {'LOWER': 'x'}, 
+    {'LIKE_NUM': True},
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+    {'LOWER': 'x', 'OP': '?'}, 
+    {'LIKE_NUM': True, 'OP': '?'},
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+    {'LOWER': 'x', 'OP': '?'}, 
+    {'LIKE_NUM': True, 'OP': '?'},
+    {'LOWER': {"IN": ["mts","m","metros"]}, "OP":"?"},
+],
+[   
+    {'LIKE_NUM': True},
+    {'LOWER': {'IN': ['m', 'mts', 'metros']}, "OP": "?"},
+    {"LOWER": "de", "OP": "?"},
+    {'LOWER': 'frente'},
+    {'LOWER': {'IN': ['por', 'x', 'y']}, "OP": "?"},
+    {'LIKE_NUM': True},
+    {'LOWER': {'IN': ['m', 'mts', 'metros']}, "OP": "?"},
+    {"LOWER": "de", "OP": "?"},
+    {'LOWER': 'fondo'}
+]])
+matcher.add('DIR_NRO', [ [
+    {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
+    {'TEXT': '.', 'OP':'?'},  
+    {'POS': 'PROPN', 'OP': '+'},  
+    {'LOWER': 'al', "OP": "?"}, 
+    {'LIKE_NUM': True}    
+],
+[
+    {'LOWER': {'IN': ['calle', 'avenida', 'av', 'diagonal', 'diag']}, 'OP':'?'},   
+    {'TEXT': '.', 'OP':'?'}, 
+    {'POS': 'PROPN', 'OP': '+'},  
+    {'LOWER': 'n'}, 
+    {'TEXT': '°'}, 
+    {'LIKE_NUM': True}    
+]])
+matcher.add('DIR_INTERSECCION', [dir_interseccion])
+matcher.add('DIR_ENTRE', [dir_entre])
+matcher.add('DIR_LOTE', [[
+    {'LOWER': 'lote'},
+    {'POS': {'IN': ['NUM', 'PROPN']}}
+]])
+matcher.add('pileta', [[
+    {'LOWER': {'IN': ['piscina', 'pileta']}}, 
+]])
+matcher.add('esquina', [[
+    {'LOWER': 'esquina'}, 
+]])
+matcher.add('irregular', [[
+    {'LEMMA': 'irregular'}
+],
+[
+   {'LOWER': {'IN': ['lote', 'forma']}},
+   {'POS': 'ADJ'}
+]])
+matcher.add('fot', [[
     {'LOWER': {'IN':['fot', 'f.o.t']}},
     {'LOWER':  {'IN':['res', 'residencial', 'comercial', 'com', 'industrial']}, "OP": "?"},
     {"IS_PUNCT": True, "OP":"?"},
     {"LIKE_NUM": True}
-]
-
-barrio= [
-    {"LOWER": "barrio"},
+]])
+matcher.add('barrio', [[
+    {"LOWER": {'IN': ['estancia', 'barrio', 'country', 'club']}},
     {'POS':"PROPN", "OP": "+"}
-]
-
-matcher.add('medidas', [medidas])
-matcher.add('DIR_NRO', [dir_nro])
-matcher.add('DIR_ALTURA', [dir_altura])
-matcher.add('DIR_INTERSECCION', [dir_interseccion])
-matcher.add('DIR_ENTRE', [dir_entre])
-matcher.add('DIR_LOTE', [dir_lote])
-matcher.add('pileta', [pileta])
-matcher.add('esquina', [esquina])
-matcher.add('irregular', [irregular])
-matcher.add('fot', [fot])
-matcher.add('barrio', [barrio])
+]])
 
 # ---------------------------------------
 # Metricas
@@ -224,29 +231,10 @@ METRICAS = {
         }
 }
 
-def add_spaces_x(match):
-    medidas = match.group(1)
-    if ' x ' not in medidas and ' X ' not in medidas:
-        return medidas.replace('x', ' x ').replace('X', ' X ')
-    else:
-        return medidas
-
-def add_spaces_entre(match):
-    medidas= match.group(0)
-    return medidas.replace('e/', 'e/ ')
-
-def normalizar_medidas(text):   
-    medidas_regex = re.compile(r'(\b\d+(?:,\d+)?\s?[xX]\s?\d+(?:,\d+)?\b)') 
-    return medidas_regex.sub(add_spaces_x, text)
-    
-def normalizar_direccion(text):
-    medidas_regex = re.compile(r'e/\d+')
-    return medidas_regex.sub(add_spaces_entre, text)
 
 def matches(doc):
     prev_result = {
         'medidas': [],
-        'DIR_ALTURA': [],
         'DIR_NRO': [],
         'DIR_INTERSECCION': [],
         'DIR_ENTRE': [],
@@ -276,7 +264,6 @@ def matches(doc):
 def matches_dep(doc):
     prev_result = {
         'medidas': [],
-        'DIR_ALTURA': [],
         'DIR_NRO': [],
         'DIR_INTERSECCION': [],
         'DIR_ENTRE': [],
@@ -314,9 +301,6 @@ def clear_inter_entre(result):
     return result
 
 
-def pre_procesamiento(texto: str):
-    return normalizar_medidas(normalizar_direccion(texto))
-
 def calcular_performance_por_variable():
     for variable, valores in METRICAS.items():
         tp = valores["tp"]
@@ -334,21 +318,61 @@ def calcular_performance_por_variable():
 def post_procesamiento(result: dict[list]):
     for variable in result.keys():
         if type(result[variable]) != bool:
-            prediccion= result[variable].strip()
+            prediccion= str(result[variable]).strip()
             prediccion= " ".join(token.text for token in NLP(prediccion) if not token.is_punct)
             result[variable]= prediccion
     return result
 
+def contiene_dos(texto):
+    patron = re.compile(r'\b(dos|doble|2)\b', re.IGNORECASE)
+    coincidencias = patron.findall(texto)
+    return bool(coincidencias)
+
+def contiene_tres(texto):
+    patron = re.compile(r'\b(tres|triple|3)\b', re.IGNORECASE)
+    coincidencias = patron.findall(texto)
+    return bool(coincidencias)
+
+def procesar_frentes(frentes_predichos):
+    for match in frentes_predichos:
+        contiene_2= contiene_dos(match.lower())
+        if contiene_2:
+            return 2
+        else: 
+            contiene_3= contiene_tres(match.lower())
+            if contiene_3:
+                return 3
+    else:
+        return 1
+
+
+def procesar_irregular(predichos):
+    for predicho in predichos:
+        if "irregular" in predicho.lower(): 
+            return True
+        patron = re.compile(r'\b(triangular|martillo|trapecio)\b', re.IGNORECASE)
+        coincidencias = patron.findall(predicho)
+        if bool(coincidencias):
+            return True 
+    else:
+        return ""
+    
+def contar_numeros(cadena):
+    numeros = re.findall(r'\b\d+(?:[.,]\d+)?\b', cadena)
+    numeros_sin_duplicados = set(numeros)
+    return len(numeros_sin_duplicados)
+
+
 def procesar_matches(predichos):
-    matches_direccion_todos=predichos["DIR_ENTRE"]+predichos["DIR_INTERSECCION"]+predichos["DIR_ALTURA"]+predichos["DIR_NRO"]+predichos["DIR_LOTE"]
+    matches_direccion_todos=predichos["DIR_ENTRE"]+predichos["DIR_INTERSECCION"]+predichos["DIR_NRO"]+predichos["DIR_LOTE"]
     result = {
         'direccion': max(matches_direccion_todos, key=len) if matches_direccion_todos else "",
         'fot': max(predichos["fot"], key=len) if predichos["fot"] else "",
-        'irregular': True if len(predichos["irregular"])>0 else "",
+        'irregular': procesar_irregular(predichos["irregular"]) if len(predichos["irregular"])>0 else "",
         'medidas': max(predichos["medidas"], key=len) if predichos["medidas"] else "",
         'esquina': True if len(predichos["esquina"])>0 else "",
         'barrio': max(predichos["barrio"], key=len) if predichos["barrio"] else "",
-        'frentes': max(predichos["frentes"], key=len) if predichos["frentes"] else "",
+        'frentes': procesar_frentes(predichos["frentes"]) if predichos["frentes"] else "",
         'pileta': True if len(predichos["pileta"])>0 else "",
     }
     result= post_procesamiento(result)
@@ -357,16 +381,23 @@ def procesar_matches(predichos):
         if rta == "" and esperada == "":
             METRICAS[variable]["tn"]+=1
         else:
-            if variable == "medidas":
-                esperada= normalizar_medidas(esperada)
             if variable == "fot":
                 esperada= ' '.join([token.text for token in NLP(esperada) if not token.is_punct])
                 rta= ' '.join([token.text for token in NLP(rta) if not token.is_punct])
 
-            if variable in ["direccion","fot", "medidas", "barrio", "frentes"]:
-                correcta= NLP(rta.lower()).similarity(NLP(esperada.lower())) > 0.9
+            if variable in ["direccion","fot", "medidas", "barrio"]:
+                correcta= NLP(rta.lower()).similarity(NLP(esperada.lower())) == 1
             elif variable in [ "irregular", "esquina", "pileta"]:
                 correcta= rta != "" and rta == esperada
+                if variable == "irregular" and rta == "":
+                    correcta =  contar_numeros(result["medidas"]) > 2
+            elif variable == "frentes":
+                if esperada == "":
+                    correcta = False
+                elif not rta:
+                    correcta = True if result["esquina"] and esperada == 2 else False
+                else:
+                    correcta = procesar_frentes(rta) == int(esperada) 
 
             if correcta: 
                 METRICAS[variable]["tp"]+=1
@@ -389,11 +420,10 @@ if __name__ == "__main__":
     input = input.fillna("")
 
     for index, row in input.iterrows():
-        texto= pre_procesamiento(row['descripcion'])    
-        predichos = obtener_matches(NLP(texto))
+        predichos = obtener_matches(NLP(row['descripcion']))
         procesar_matches(predichos)
         calcular_performance_por_variable()
-    with open('resultados.json', 'w', encoding="utf8") as fp:
+    with open('resultados2.json', 'w', encoding="utf8") as fp:
         json.dump(METRICAS, fp, ensure_ascii=False)
 
 
